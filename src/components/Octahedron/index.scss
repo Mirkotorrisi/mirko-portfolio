@@ -1,0 +1,75 @@
+$triwidth: 10vw;
+$sqrt3: 1.732;
+$tilt: 35.27deg; // atan(1/sqrt(2))
+$triheight: $triwidth * $sqrt3;
+
+.wrapper {
+  transform-style: preserve-3d;
+}
+.octa {
+  position: relative;
+  width: #{$triwidth * 2};
+  height: #{$triwidth * 2};
+  animation: spin 60s infinite linear;
+  transform-style: preserve-3d;
+
+  .side {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    height: $triheight;
+    width: $triwidth * 2;
+    background-color: #5a5a5af0;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform-origin: 50% 100%;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+
+    &:nth-child(1) {
+      background-image: url("../../../static/ts-logo.svg");
+    }
+    &:nth-child(2) {
+      background-image: url("../../../static/react-logo.svg");
+    }
+    &:nth-child(3) {
+      background-image: url("../../../static/gatsby-logo.svg");
+    }
+    &:nth-child(4) {
+      background-image: url("../../../static/angular-logo.svg");
+    }
+    &:nth-child(5) {
+      background-image: url("../../../static/nest-logo.svg");
+    }
+    &:nth-child(6) {
+      background-image: url("../../../static/tw-logo.svg");
+    }
+    &:nth-child(7) {
+      background-image: url("../../../static/next-logo.svg");
+    }
+    &:nth-child(8) {
+      background-image: url("../../../static/mongodb-icon.svg");
+    }
+  }
+
+  @for $i from 1 through 8 {
+    $tilt2: $tilt;
+    @if $i > 4 {
+      $tilt2: 180deg - $tilt;
+    }
+    .side:nth-child(#{$i}) {
+      transform: rotateY(#{$i * 90deg}) translateZ($triwidth) rotateX($tilt2);
+      border-bottom-color: #{rgba(random(255), random(255), random(255), 0.4)};
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg);
+  }
+}

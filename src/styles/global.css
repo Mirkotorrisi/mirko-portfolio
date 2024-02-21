@@ -13,12 +13,7 @@
   }
   h2 {
     /* Heading/1 */
-    @apply relative overflow-hidden text-4xl not-italic font-bold leading-10 lg:text-6xl  lg:leading-[60px] max-w-[800px];
-  }
-
-  h2.heading-2 {
-    /* Heading/2 */
-    @apply text-3xl leading-9 lg:text-5xl lg:leading-[48px];
+    @apply w-full relative overflow-hidden text-4xl not-italic font-bold leading-10 lg:text-6xl  lg:leading-[60px];
   }
 
   p {
@@ -148,8 +143,6 @@
   height: 70px;
   overflow: hidden;
   h2 {
-    font-size: 3rem;
     transform: translateY(150%);
-    line-height: 4.2rem;
   }
 }

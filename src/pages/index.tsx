@@ -3,9 +3,11 @@ import { graphql, type HeadFC } from "gatsby";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import * as React from "react";
+import { useRef } from "react";
 import { formConfig } from "../assets/form.config";
 import { Curriculum } from "../components/Curriculum";
 import Curve from "../components/Curve";
+import CustomPointer from "../components/CustomPointer";
 import Form from "../components/Form";
 import { Hero } from "../components/Hero";
 import Section from "../components/Section";
@@ -20,7 +22,55 @@ interface Props {
 const IndexPage: React.FC<Props> = ({
   data: { allContentfulCurriculum, allContentfulSections, allContentfulWork },
 }) => {
+  const container = useRef(null);
   const sections = getSectionsObject(allContentfulSections.nodes);
+  const xTo = useRef<((value: number) => void) | null>(null);
+  const yTo = useRef<((value: number) => void) | null>(null);
+
+  const { contextSafe } = useGSAP(
+    () => {
+      xTo.current = gsap.quickTo("#custom-pointer", "x", {
+        duration: 0.2,
+        ease: "power3",
+      });
+      yTo.current = gsap.quickTo("#custom-pointer", "y", {
+        duration: 0.2,
+        ease: "power3",
+      });
+    },
+    { scope: container }
+  );
+
+  const showCustomCursor = contextSafe(() => {
+    gsap.to("#custom-pointer", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.3,
+    });
+  });
+
+  const hideCustomCursor = contextSafe(() => {
+    gsap.to("#custom-pointer", {
+      opacity: 0,
+      scale: 0,
+      duration: 0.3,
+    });
+  });
+
+  const moveCustomCursor = contextSafe((e: React.MouseEvent) => {
+    xTo?.current?.(e.clientX);
+    yTo?.current?.(e.clientY);
+    gsap.to("#custom-pointer", {
+      padding: "4rem",
+      duration: 0.3,
+      ease: "power1",
+    });
+    gsap.to("#custom-pointer", {
+      padding: "1rem",
+      duration: 0.5,
+      ease: "power3",
+    });
+  });
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -73,7 +123,14 @@ const IndexPage: React.FC<Props> = ({
   };
 
   return (
-    <main className="bg-background flex flex-col justify-center items-center">
+    <main
+      className="bg-background flex flex-col justify-center items-center cursor-none"
+      ref={container}
+      onMouseEnter={showCustomCursor}
+      onMouseLeave={hideCustomCursor}
+      onMouseMove={moveCustomCursor}
+    >
+      <CustomPointer />
       <Hero
         title={sections["hero"].title}
         richText={sections["hero"].paragraph}
@@ -100,7 +157,9 @@ const IndexPage: React.FC<Props> = ({
           className="absolute w-full bottom-0 h-96"
         />
       </div>
-      <Works cards={allContentfulWork.nodes} />
+      <div onMouseEnter={hideCustomCursor} onMouseLeave={showCustomCursor}>
+        <Works cards={allContentfulWork.nodes} />
+      </div>
       <div className="line overflow-hidden relative my-4">
         <h2 className={`heading-2 text-center`}>Let's get in touch</h2>
       </div>
@@ -110,9 +169,9 @@ const IndexPage: React.FC<Props> = ({
         submitLabel="Contact me!"
         formClassNames={{
           container: "container grid grid-cols-2 gap-4 mx-auto p-8",
-          input: "border-accent rounded-lg border px-4 py-2 h-full w-full",
+          input: "border-accent rounded-lg border-2 px-4 py-2 h-full w-full",
           submit:
-            "col-span-2 mx-auto rounded-lg border border-accent bg-slate-200 hover:bg-accent hover:text-white hover:cursor-pointer font-bold px-8 py-2 hover:cursor-pointer",
+            "col-span-2 mx-auto rounded-lg border-2 border-accent bg-slate-200 hover:bg-accent hover:text-white hover:cursor-pointer font-bold px-8 py-2 hover:cursor-pointer",
           message: "col-span-2 h-48",
         }}
       />
@@ -153,6 +212,9 @@ export const data = graphql`
         link
         description {
           raw
+        }
+        image {
+          gatsbyImageData
         }
       }
     }

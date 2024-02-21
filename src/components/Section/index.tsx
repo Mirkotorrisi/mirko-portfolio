@@ -1,4 +1,4 @@
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import {
   ContentfulRichTextGatsbyReference,
   RenderRichTextData,
@@ -22,7 +22,6 @@ const Section = ({
   imageDesc,
   invertedOrder,
 }: Props) => {
-  const img = image ? getImage(image) : null;
   return (
     <section className="p-8 lg:p-20 gap-8 md:grid md:grid-cols-2 md:gap-20 lg:gap-40">
       <div
@@ -31,14 +30,18 @@ const Section = ({
         }`}
       >
         <div className="line overflow-hidden relative">
-          <h2 className={`heading-2 md:text-left absolute`}>{title}</h2>
+          <h2 className="md:text-left absolute">{title}</h2>
         </div>
         <div className={`mt-2 lg:mt-4 md:text-left`}>
           {renderRichText(richText, richTextRendererOptions)}
         </div>
       </div>
-      {img && (
-        <GatsbyImage image={img} alt={imageDesc ?? ""} className="rounded-lg" />
+      {image && (
+        <GatsbyImage
+          image={image}
+          alt={imageDesc ?? ""}
+          className="rounded-lg"
+        />
       )}
     </section>
   );

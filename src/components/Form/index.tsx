@@ -35,6 +35,7 @@ const Form = ({
       {Object.entries(form).map(([key, field]) => (
         <Input
           name={key}
+          key={key}
           field={field}
           className={formClassNames.input}
           onChange={handleChange}

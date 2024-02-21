@@ -11,7 +11,7 @@ module.exports = {
       background: "#f8f9fa",
       "text-primary": "#212529",
       subtle: "#6c757d",
-      accent: "#28a745",
+      accent: "#33FE00",
       white: "#ffffff",
     },
     extend: {},

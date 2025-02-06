@@ -8,6 +8,7 @@ import { formConfig } from "../assets/form.config";
 import { Curriculum } from "../components/Curriculum";
 import Curve from "../components/Curve";
 import CustomPointer from "../components/CustomPointer";
+import Footer from "../components/Footer";
 import Form from "../components/Form";
 import { Hero } from "../components/Hero";
 import Section from "../components/Section";
@@ -20,7 +21,12 @@ interface Props {
 }
 
 const IndexPage: React.FC<Props> = ({
-  data: { allContentfulCurriculum, allContentfulSections, allContentfulWork },
+  data: {
+    allContentfulCurriculum,
+    allContentfulSections,
+    allContentfulWork,
+    allContentfulContact,
+  },
 }) => {
   const container = useRef(null);
   const sections = getSectionsObject(allContentfulSections.nodes);
@@ -134,7 +140,6 @@ const IndexPage: React.FC<Props> = ({
       <Hero
         title={sections["hero"].title}
         richText={sections["hero"].paragraph}
-        image={sections["hero"].image.gatsbyImageData}
       />
       <div className="relative bg-background w-full py-80">
         <Curve
@@ -163,18 +168,29 @@ const IndexPage: React.FC<Props> = ({
       <div className="line overflow-hidden relative my-4">
         <h2 className={`heading-2 text-center`}>Let's get in touch</h2>
       </div>
-      <Form
-        handleSubmit={handleSubmit}
-        formConfig={formConfig}
-        submitLabel="Contact me!"
-        formClassNames={{
-          container: "container grid grid-cols-2 gap-4 mx-auto p-8",
-          input: "border-accent rounded-lg border-2 px-4 py-2 h-full w-full",
-          submit:
-            "col-span-2 mx-auto rounded-lg border-2 border-accent bg-slate-200 hover:bg-accent hover:text-white hover:cursor-pointer font-bold px-8 py-2 hover:cursor-pointer",
-          message: "col-span-2 h-48",
-        }}
-      />
+      <div
+        onMouseEnter={hideCustomCursor}
+        onMouseLeave={showCustomCursor}
+        className="w-full"
+      >
+        <Form
+          handleSubmit={handleSubmit}
+          formConfig={formConfig}
+          submitLabel="Contact me!"
+          formClassNames={{
+            container: "container grid grid-cols-2 gap-4 mx-auto p-8",
+            input: "rounded-lg border px-4 py-2 h-full w-full",
+            submit:
+              "rounded-lg border-2 border-accent bg-accent hover:bg-white  font-bold px-8 py-2 hover:cursor-pointer",
+            message: "col-span-2 h-48",
+            submitContainer:
+              "col-span-2 flex justify-center gap-2 items-center",
+            thankYouMsg: "col-span-2 text-center font-bold mx-auto",
+          }}
+          thankYouMsg="Thank you for reaching out! I'll get back to you as soon as possible."
+        />
+      </div>
+      <Footer contacts={allContentfulContact.nodes} />
     </main>
   );
 };
@@ -216,6 +232,12 @@ export const data = graphql`
         image {
           gatsbyImageData
         }
+      }
+    }
+    allContentfulContact {
+      nodes {
+        linkTo
+        name
       }
     }
   }

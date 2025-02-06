@@ -40,7 +40,7 @@ const Section = ({
         <GatsbyImage
           image={image}
           alt={imageDesc ?? ""}
-          className="rounded-lg"
+          className="rounded-full"
         />
       )}
     </section>

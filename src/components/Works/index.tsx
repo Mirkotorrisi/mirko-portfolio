@@ -28,7 +28,7 @@ const Works = ({ cards }: Props) => {
 
       ScrollTrigger.create({
         trigger: ".scrollWrapper",
-        start: "top 20%",
+        start: "top",
         end: () => `+=${getScrollAmount() * -1}`,
         pin: true,
         animation: tween,
@@ -42,7 +42,7 @@ const Works = ({ cards }: Props) => {
   );
 
   return (
-    <div className="w-full bg-primary pb-20" ref={container}>
+    <div className="w-full bg-primary cursor-auto pb-20" ref={container}>
       <div className="scrollWrapper flex flex-col relative w-full max-w-[100vw]">
         <div className="px-8 lg:px-20 line mb-8">
           <h2 className="text-white">Works</h2>

@@ -1,5 +1,4 @@
 import { useGSAP } from "@gsap/react";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import {
   ContentfulRichTextGatsbyReference,
   RenderRichTextData,
@@ -13,7 +12,6 @@ import "./index.scss";
 interface Props {
   title: string;
   richText: RenderRichTextData<ContentfulRichTextGatsbyReference>;
-  image: IGatsbyImageData;
 }
 
 const TitleLetters = ({ title }: { title: string }) => (
@@ -24,21 +22,23 @@ const TitleLetters = ({ title }: { title: string }) => (
   </div>
 );
 
-export const Hero = ({ title, richText, image }: Props) => {
+export const Hero = ({ title, richText }: Props) => {
   const container = useRef(null);
   useGSAP(
     () => {
       const letters = gsap.utils.toArray("header h1 span");
       gsap.to(letters, {
         rotateY: "0deg",
-        stagger: 0.05,
+        stagger: 0.025,
         delay: 0.5,
+        y: 0,
       });
     },
     { scope: container }
   );
+
   return (
-    <header className="relative w-full h-screen bg-primary flex justify-center">
+    <header className="relative w-full h-screen  flex flex-col lg:flex-row justify-center bg-primary">
       <div
         className="flex flex-col h-full justify-center px-4 lg:px-20 z-10"
         ref={container}
@@ -48,11 +48,6 @@ export const Hero = ({ title, richText, image }: Props) => {
         </h1>
         <h4 className="text-xl text-accent">{renderRichText(richText)}</h4>
       </div>
-      <GatsbyImage
-        image={image}
-        alt="hero-image"
-        className="absolute right-0 bottom-0 h-96 w-96 object-cover  z-0 m-auto"
-      />
       <Octahedron />
     </header>
   );

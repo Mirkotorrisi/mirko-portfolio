@@ -27,6 +27,11 @@ export type Section = {
   sectionId: string;
 };
 
+export type Contact = {
+  linkTo: string;
+  name: string;
+};
+
 export type PageData = {
   allContentfulSections: {
     nodes: Section[];
@@ -36,5 +41,8 @@ export type PageData = {
   };
   allContentfulWork: {
     nodes: Work[];
+  };
+  allContentfulContact: {
+    nodes: Contact[];
   };
 };

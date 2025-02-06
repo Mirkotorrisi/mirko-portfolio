@@ -23,7 +23,7 @@ export const Curriculum = ({ nodes }: Props) => {
       {nodes
         .sort(
           (a, b) =>
-            Number(a.period.split("-")[0]) - Number(b.period.split("-")[0])
+            Number(b.period.split("-")[0]) - Number(a.period.split("-")[0])
         )
         .map(({ companyName, description, period }, i) => (
           <div

@@ -1,10 +1,10 @@
-const googleScriptUrl =
-  "https://script.google.com/macros/s/AKfycbxmFyb6lL29Wuq4Ml7-3Tmy9tVmVkfWEP5IeDu374ZwKMDNfTE6ftkC1FCRUKWqAlgs4A/exec";
+const pipedreamUrl =
+  "https://en5tlw72m73t4fb.m.pipedream.net";
 
 export const submitForm = async (form: HTMLFormElement) => {
   try {
     let requestBody = new FormData(form);
-    const res = await fetch(googleScriptUrl, {
+    const res = await fetch(pipedreamUrl, {
       method: "POST",
       body: requestBody,
     });

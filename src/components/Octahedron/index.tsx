@@ -31,7 +31,7 @@ const Octahedron = () => {
   });
 
   return (
-    <div className="my-auto mx-auto" ref={container}>
+    <div className="my-auto mx-auto z-20" ref={container}>
       <div className="wrapper">
         <div className="octa absolute">
           <div className="side"></div>

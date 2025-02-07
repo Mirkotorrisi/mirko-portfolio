@@ -6,6 +6,8 @@ import Linkedin from "../icons/Linkedin";
 
 type Props = {
   contacts: Contact[];
+  showOpen: () => void;
+  hideOpen: () => void;
 };
 
 const imgList = {
@@ -14,7 +16,7 @@ const imgList = {
   Email: <Email />,
 };
 
-const Footer = ({ contacts }: Props) => {
+const Footer = ({ contacts, showOpen, hideOpen }: Props) => {
   return (
     <footer className="w-full h-20 bg-primary flex items-center justify-center gap-4 px-6 lg:px-12">
       {contacts.map((contact) => (
@@ -25,6 +27,8 @@ const Footer = ({ contacts }: Props) => {
           rel="noreferrer"
           aria-label={`Link to my ${contact.name}`}
           className="flex items-center gap-2"
+          onMouseEnter={showOpen}
+          onMouseLeave={hideOpen}
         >
           {imgList[contact.name as keyof typeof imgList]}
         </a>

@@ -46,7 +46,9 @@ export const Hero = ({ title, richText }: Props) => {
         <h1 className="text-3xl lg:text-6xl text-highlight">
           <TitleLetters title={title} />
         </h1>
-        <h4 className="text-xl text-accent">{renderRichText(richText)}</h4>
+        <p className="text-xl text-accent max-w-xl">
+          {renderRichText(richText)}
+        </p>
       </div>
       <Octahedron />
     </header>

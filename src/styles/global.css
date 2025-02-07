@@ -13,7 +13,7 @@
   }
   h2 {
     /* Heading/1 */
-    @apply w-full relative overflow-hidden text-4xl not-italic font-bold leading-10 lg:text-6xl  lg:leading-[60px];
+    @apply w-full relative overflow-hidden text-4xl not-italic font-bold leading-8 lg:text-6xl lg:leading-[72px];
   }
 
   p {
@@ -144,5 +144,13 @@
   overflow: hidden;
   h2 {
     transform: translateY(150%);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .line {
+    height: auto;
+    min-height: 35px;
+    max-height: 70px;
   }
 }

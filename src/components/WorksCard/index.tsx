@@ -6,7 +6,7 @@ import {
 } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import { richTextRendererOptions } from "../../helpers/richTextRendererOptions";
-import Github from "../icons/Github";
+import Link from "../icons/Link";
 
 type Props = {
   title: string;
@@ -33,11 +33,11 @@ const WorksCard = ({
             className="underline text-lg font-bold hover:!cursor-pointer"
             href={link}
             target="_blank"
-            aria-label="Github repository"
+            aria-label={`Link to ${title}`}
             onMouseEnter={showOpen}
             onMouseLeave={hideOpen}
           >
-            <Github fill="#000000" />
+            <Link />
           </a>
         </div>
         {image && (

@@ -5,6 +5,12 @@ $triheight: $triwidth * $sqrt3;
 
 .wrapper {
   transform-style: preserve-3d;
+  @media (max-width: 768px) {
+    top: 0;
+    left: 0;
+    animation: moveX 2s linear 0s infinite alternate,
+      moveY 3.4s linear 0s infinite alternate;
+  }
 }
 .octa {
   position: relative;
@@ -71,5 +77,23 @@ $triheight: $triwidth * $sqrt3;
   }
   100% {
     transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg);
+  }
+}
+
+@keyframes moveX {
+  from {
+    left: 0;
+  }
+  to {
+    left: 90vw;
+  }
+}
+
+@keyframes moveY {
+  from {
+    top: 0;
+  }
+  to {
+    top: 90vh;
   }
 }

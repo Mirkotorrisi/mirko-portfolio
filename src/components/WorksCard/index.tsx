@@ -25,7 +25,7 @@ const WorksCard = ({
   hideOpen,
 }: Props) => {
   return (
-    <div className="relative shrink-0 h-full ">
+    <div className="relative shrink-0 h-[calc(100vh-5rem)] lg:h-full">
       <div className="bg-white border-2 shadow-accent rounded-lg overflow-hidden p-4 lg:p-8 flex flex-col gap-4 h-full  max-w-[100vw]">
         <div className="w-full flex justify-between items-start z-30">
           <h3 className="font-bold text-4xl w-[80%]">{title}</h3>{" "}

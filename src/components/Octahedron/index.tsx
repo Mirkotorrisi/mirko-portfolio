@@ -9,6 +9,7 @@ const Octahedron = () => {
   const { contextSafe } = useGSAP({ scope: container }); // we can pass in a config object as the 1st parameter to make scoping simple
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     window.addEventListener("mousemove", handleMouse);
     return () => {
       window.removeEventListener("mousemove", handleMouse);
@@ -32,7 +33,7 @@ const Octahedron = () => {
 
   return (
     <div className="my-auto mx-auto z-20" ref={container}>
-      <div className="wrapper">
+      <div className="wrapper absolute">
         <div className="octa absolute">
           <div className="side"></div>
           <div className="side"></div>

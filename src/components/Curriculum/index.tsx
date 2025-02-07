@@ -41,9 +41,18 @@ export const Curriculum = ({ nodes }: Props) => {
               <p className="font-bold text-highlight text-xl">@{companyName}</p>
               <p className="text-accent bg-primary flex-shrink-0">{period}</p>
               <ul>
-                {description.map((d, i) => (
-                  <li key={i}>{d}</li>
-                ))}
+                {description.map((d, i) => {
+                  const https = "https://";
+                  if (d.includes(https)) {
+                    const [text, link] = d.split(https);
+                    return (
+                      <li key={i} className="underline hover:text-accent">
+                        <a href={`https://${link}`}>{text}</a>
+                      </li>
+                    );
+                  }
+                  return <li key={i}>{d}</li>;
+                })}
               </ul>
             </div>
           </div>

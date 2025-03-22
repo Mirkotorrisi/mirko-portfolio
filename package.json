@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.0",
+    "@urpflanze/js": "^1.1.5",
     "autoprefixer": "^10.4.16",
     "gatsby": "^5.12.4",
     "gatsby-plugin-image": "^3.12.3",

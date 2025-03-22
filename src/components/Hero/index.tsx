@@ -8,6 +8,7 @@ import gsap from "gsap";
 import React, { useRef } from "react";
 import Octahedron from "../Octahedron";
 import "./index.scss";
+import Uprflanze from "./Uprflanze";
 
 interface Props {
   title: string;
@@ -39,6 +40,7 @@ export const Hero = ({ title, richText }: Props) => {
 
   return (
     <header className="relative w-full h-screen  flex flex-col lg:flex-row justify-center bg-primary">
+      <Uprflanze />
       <div
         className="flex flex-col h-full justify-center px-4 lg:px-20 z-10"
         ref={container}
@@ -46,9 +48,9 @@ export const Hero = ({ title, richText }: Props) => {
         <h1 className="text-3xl lg:text-6xl text-highlight">
           <TitleLetters title={title} />
         </h1>
-        <p className="text-xl text-accent max-w-xl">
+        <div className="text-xl text-accent max-w-xl">
           {renderRichText(richText)}
-        </p>
+        </div>
       </div>
       <Octahedron />
     </header>

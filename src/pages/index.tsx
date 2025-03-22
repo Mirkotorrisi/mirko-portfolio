@@ -3,7 +3,6 @@ import * as React from "react";
 import { formConfig } from "../assets/form.config";
 import { Curriculum } from "../components/Curriculum";
 import Curve from "../components/Curve";
-import CustomPointer from "../components/CustomPointer";
 import Footer from "../components/Footer";
 import Form from "../components/Form";
 import { Hero } from "../components/Hero";
@@ -42,13 +41,13 @@ const IndexPage: React.FC<Props> = ({
 
   return (
     <main
-      className="bg-background flex flex-col justify-center items-center cursor-none"
+      className="bg-background flex flex-col justify-center items-center "
       ref={container}
       onMouseEnter={showCustomCursor}
       onMouseLeave={hideCustomCursor}
       onMouseMove={moveCustomCursor}
     >
-      <CustomPointer />
+      {/* <CustomPointer /> */}
       <Hero
         title={sections["hero"].title}
         richText={sections["hero"].paragraph}
